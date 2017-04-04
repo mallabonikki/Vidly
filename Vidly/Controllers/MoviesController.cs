@@ -25,6 +25,7 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Home", new { page = 1, sortby = "name" });
         }
 
+        // movies/edit/1 or movies/edit?id=1
         public ActionResult Edit(int id)
         {
             return Content("Id = " + id);
@@ -41,6 +42,12 @@ namespace Vidly.Controllers
 
             return Content(String.Format("page Index={0}&sort By={1}", pageIndex, sortBy));
         }
-
+        
+        //This will be movies/Release/1978/06 or movies/Release?year=1978&month=06
+        //It could be embeded url or query string url
+        public ActionResult ByReleaseDate(int year, byte month)
+        {
+            return Content(year + "/" + month);
+        }
     }
 }
