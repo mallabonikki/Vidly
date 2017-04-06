@@ -14,22 +14,24 @@ namespace Vidly
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //Custom route, shoud be created before the default route
-            //Object Contraits could only be work on embeded url
-            routes.MapRoute(
-              "MoviesByReleaseDate",
-              "movies/released/{year}/{month}",
-              // use this to obtain the query string url //url: "{controller}/{action}/{year}/{month}",
-              new { Controller = "Movies", Action = "ByReleaseDate"  },
-              //new { year = @"\d{4}", month = @"\d{2}" }
-              new { year = @"2015|2016", month = @"\d{2}" }
-            );
+            ////Custom route, shoud be created before the default route
+            ////Object Contraits could only be work on embeded url
+            //routes.MapRoute(
+            //  "MoviesByReleaseDate",
+            //  "movies/released/{year}/{month}",
+            //  // use this to obtain the query string url //url: "{controller}/{action}/{year}/{month}",
+            //  new { Controller = "Movies", Action = "ByReleaseDate"  },
+            //  //new { year = @"\d{4}", month = @"\d{2}" }
+            //  new { year = @"2015|2016", month = @"\d{2}" }
+            //);
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            routes.MapMvcAttributeRoutes();
+
+            //routes.MapRoute(
+            //    name: "Default",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            //);
         }
     }
 }
