@@ -17,16 +17,20 @@ namespace Vidly.Controllers
         public ActionResult Random()
         {
             //instance of movie model
-            var movie = new Movie() { Name = "Shrek!" };
 
             //pass the instance of the movie to return to the view
             //return View(movie);
 
             //Examples of different action results
-            return Content("Hello World!");
+            //return Content("Hello World!");
             //return HttpNotFound();
             //return new EmptyResult();
             //return RedirectToAction("Index", "Home", new { page = 1, sortby = "name" });
+
+            var movie = new Movie() { Name = "Shrek!" };
+            //ViewData["Movie"] = movie;
+            //ViewBag.Movie = movie;
+            return View(movie);
         }
 
         // movies/edit/1 or movies/edit?id=1
