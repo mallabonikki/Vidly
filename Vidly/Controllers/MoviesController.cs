@@ -23,14 +23,10 @@ namespace Vidly.Controllers
             //return View(movie);
 
             //Examples of different action results
-            //return Content("Hello World!");
+            return Content("Hello World!");
             //return HttpNotFound();
             //return new EmptyResult();
             //return RedirectToAction("Index", "Home", new { page = 1, sortby = "name" });
-
-            //ViewData["Movie"] = movie;
-            ViewBag.Movie = movie;
-            return View();
         }
 
         // movies/edit/1 or movies/edit?id=1
