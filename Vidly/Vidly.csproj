@@ -227,6 +227,18 @@
     <Compile Include="Migrations\201704161203390_ApplyAnnotationsToCustomerName.Designer.cs">
       <DependentUpon>201704161203390_ApplyAnnotationsToCustomerName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704240949054_AddNameToMembershipType.cs" />
+    <Compile Include="Migrations\201704240949054_AddNameToMembershipType.Designer.cs">
+      <DependentUpon>201704240949054_AddNameToMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704241011393_UpdateMembershipTypeToAddDataToName.cs" />
+    <Compile Include="Migrations\201704241011393_UpdateMembershipTypeToAddDataToName.Designer.cs">
+      <DependentUpon>201704241011393_UpdateMembershipTypeToAddDataToName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704241141457_UpdateMembershipTypeToAddDataToName1.cs" />
+    <Compile Include="Migrations\201704241141457_UpdateMembershipTypeToAddDataToName1.Designer.cs">
+      <DependentUpon>201704241141457_UpdateMembershipTypeToAddDataToName1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -332,6 +344,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704161203390_ApplyAnnotationsToCustomerName.resx">
       <DependentUpon>201704161203390_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704240949054_AddNameToMembershipType.resx">
+      <DependentUpon>201704240949054_AddNameToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704241011393_UpdateMembershipTypeToAddDataToName.resx">
+      <DependentUpon>201704241011393_UpdateMembershipTypeToAddDataToName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704241141457_UpdateMembershipTypeToAddDataToName1.resx">
+      <DependentUpon>201704241141457_UpdateMembershipTypeToAddDataToName1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
