@@ -8,11 +8,22 @@
 <h2>Customers</h2>
 
 <div>
-    <h4>Customer name is @Model.Name</h4>
     
     @Html.DisplayNameFor(model => model.Name)
         
     @Html.DisplayFor(model => model.Name)
+
+    <ul>
+        <li>Membership Type: @Model.MembershipType.Name</li>
+        @if (Model.Birthdate == null)
+        {
+            <li>Birthdate: @Model.Birthdate</li>
+        }
+        else
+        {
+            <li>Birthdate: @Model.Birthdate.Value.ToString("dd MMM yyyy")</li>
+        }
+    </ul>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
