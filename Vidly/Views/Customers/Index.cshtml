@@ -18,6 +18,7 @@ else
         <thead>
             <tr>
                 <th>Customers</th>
+                <th>Discout Rate</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@ else
                             new { id = customer.Id }, 
                             new { style = "text-decoration:none;" })
                     </td>
+                    <td>@customer.MembershipType.DiscountRate%</td>
                 </tr>
             }
         </tbody>
