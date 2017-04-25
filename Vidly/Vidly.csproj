@@ -243,9 +243,22 @@
     <Compile Include="Migrations\201704241450380_AddBirthdateToCustomer.Designer.cs">
       <DependentUpon>201704241450380_AddBirthdateToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704250557007_AddPropertiesToMovieCreateGenreType.cs" />
+    <Compile Include="Migrations\201704250557007_AddPropertiesToMovieCreateGenreType.Designer.cs">
+      <DependentUpon>201704250557007_AddPropertiesToMovieCreateGenreType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704251028469_Change-GenreType-Name-To-String-type.cs" />
+    <Compile Include="Migrations\201704251028469_Change-GenreType-Name-To-String-type.Designer.cs">
+      <DependentUpon>201704251028469_Change-GenreType-Name-To-String-type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704251031427_PopulateGenreType.cs" />
+    <Compile Include="Migrations\201704251031427_PopulateGenreType.Designer.cs">
+      <DependentUpon>201704251031427_PopulateGenreType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\GenreType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -360,6 +373,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704241450380_AddBirthdateToCustomer.resx">
       <DependentUpon>201704241450380_AddBirthdateToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704250557007_AddPropertiesToMovieCreateGenreType.resx">
+      <DependentUpon>201704250557007_AddPropertiesToMovieCreateGenreType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704251028469_Change-GenreType-Name-To-String-type.resx">
+      <DependentUpon>201704251028469_Change-GenreType-Name-To-String-type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704251031427_PopulateGenreType.resx">
+      <DependentUpon>201704251031427_PopulateGenreType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -5,6 +5,26 @@
 }
 
 <h2>Details</h2>
-<h3>ID Number: @Model.Id </h3>
-<h3>Title: @Model.Title</h3>
+<div>
+    @if (Model == null)
+    {
+        <h2>No data yet!</h2>
+    }
+    else
+    {
+        <h3>@Model.Title</h3>
+        <ul>
+            <li>
+                Genre: @Model.GenreType.Name
+            </li>
+            <li>
+                @Html.LabelFor(Model => Model.ReleaseDate) 
+                @Html.DisplayFor(Model  => Model.ReleaseDate)
+            </li>
+            <li>Date Added: @Model.AddedDate</li>
+            <li>Number of stocks: @Model.NumberOfStock</li>
+        </ul>
+    }
+</div>
+
 

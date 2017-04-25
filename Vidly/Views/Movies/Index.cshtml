@@ -19,6 +19,9 @@ else
                 <th>
                     Movies
                 </th>
+                <th>
+                    Genre
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +36,9 @@ else
                             new {id = movie.Id},
                             new { style="text-decoration:none;" }
                         )
+                    </td>
+                    <td>
+                        @movie.GenreType.Name
                     </td>
                 </tr>
             }
