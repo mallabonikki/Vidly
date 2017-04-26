@@ -22,6 +22,11 @@ namespace Vidly.Controllers
             _context.Dispose(); //disposing objects
         }
 
+        public ActionResult New()
+        {
+            return View();
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
