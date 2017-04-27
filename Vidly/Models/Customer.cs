@@ -14,6 +14,8 @@ namespace Vidly.Models
         public string Name { get; set; }
         public bool IsSubscribedToNewsLetter { get; set; }
         public MembershipType MembershipType { get; set; } //Navigation Property - use for relational model
+
+        [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; } //Foreign Key for MembershipType
 
         [Display(Name =  "Date of Birth")]
