@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +15,8 @@ namespace Vidly.Models
         public bool IsSubscribedToNewsLetter { get; set; }
         public MembershipType MembershipType { get; set; } //Navigation Property - use for relational model
         public byte MembershipTypeId { get; set; } //Foreign Key for MembershipType
+
+        [Display(Name =  "Date of Birth")]
         public DateTime? Birthdate { get; set; }
 
     }
