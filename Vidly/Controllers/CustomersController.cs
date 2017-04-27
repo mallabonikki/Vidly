@@ -25,7 +25,7 @@ namespace Vidly.Controllers
 
         public ActionResult New()
         {
-            var membershipTypes = _context.MembershipType.ToList();
+            var membershipTypes = _context.MembershipTypes.ToList();
 
             var viewModel = new NewCustomerViewModel
             {
@@ -38,7 +38,10 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
-            return View(); 
+            _context.Customers.Add(customer); //Only written in the memory not yet in the database
+            _context.SaveChanges();  //It will generate sql statement base on the modification and run them in the database
+
+            return RedirectToAction("Index", "Customers");
         }
 
         // GET: Customers
@@ -56,6 +59,8 @@ namespace Vidly.Controllers
 
             return View(customer);
         }
+
+        
 
     }
 }
