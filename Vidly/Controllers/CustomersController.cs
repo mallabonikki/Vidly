@@ -36,9 +36,22 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            _context.Customers.Add(customer); //Only written in the memory not yet in the database
+            //check the if the customer has an Id otherwise it's a new customer
+            if (customer.Id == 0)
+                _context.Customers.Add(customer); //New customer
+            else
+            {
+                //Update existing customer
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id); //fetch the customer id from the database
+
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+            }
+
             _context.SaveChanges();  //It will generate sql statement base on the modification and run them in the database
 
             return RedirectToAction("Index", "Customers");
