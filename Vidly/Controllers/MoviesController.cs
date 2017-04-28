@@ -32,11 +32,34 @@ namespace Vidly.Controllers
             return View(movies);
         }
 
-        public ActionResult Details(int Id)
+        public ActionResult New()
         {
-            var movie = _dbContext.Movies.Include(m => m.GenreType).SingleOrDefault(m => m.Id == Id);
+            var genreTypes = _dbContext.GenreTypes.ToList(); //Initialize genreTypes variable = list of records from  GenreTypes 
 
-            return View(movie);
+            var viewModel = new MovieFormViewModel() //It's one to many relationship created from IdentityModel
+            {
+                GenreTypes = genreTypes //Initialize GenreTypes model-properties = GenreTypes list of records
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            //Fetch from the database the specific movie to edit
+            var movie = _dbContext.Movies.SingleOrDefault(m => m.Id == id);
+
+            //check the specific movie if exist.
+            if (movie == null)
+                return HttpNotFound();
+
+            var viewModel = new MovieFormViewModel()
+            {
+                Movie = movie, //Initialize Movie model-property = specific movie from the database   
+                GenreTypes = _dbContext.GenreTypes.ToList() //IEnumrable GenreType GenreTypes model properties = list of records from GenreTypes
+            };
+
+            return View("MovieForm", viewModel);
         }
     }
 }

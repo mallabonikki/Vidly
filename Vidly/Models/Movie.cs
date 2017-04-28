@@ -11,20 +11,22 @@ namespace Vidly.Models
         //type prop then tab to create property
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "A Movie Title is required")]
         public string Title { get; set; }
 
-        [System.ComponentModel.DisplayName("Released Date:")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime ReleaseDate { get; set; }
+        [Display(Name = "Release Date")]
+        public DateTime? ReleaseDate { get; set; }
 
-        public DateTime AddedDate { get; set; }
+        [Display(Name = "Date Added")]
+        public DateTime? AddedDate { get; set; }
 
-        public short NumberOfStock { get; set; }
+        [Display(Name = "Number Of Stock")]
+        public short? NumberOfStock { get; set; }
 
         public GenreType GenreType { get; set; }
 
-        public short GenreTypeId { get; set; }
+        [Display(Name = "Genre Type")]
+        public short? GenreTypeId { get; set; }
 
     }
 }
