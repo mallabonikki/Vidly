@@ -19,6 +19,7 @@
         @* <label for="Birthdate">Date of Birth</label> alternative way to label a textbox *@
         @Html.LabelFor(m => m.Customer.Birthdate)
         @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthdate)
     </div>
 
     <div class="form-group">
