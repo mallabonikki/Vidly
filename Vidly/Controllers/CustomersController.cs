@@ -29,6 +29,7 @@ namespace Vidly.Controllers
 
             var viewModel = new CustomerFormViewModel
             {
+                Customer = new Customer(), //It will Initialize to the default values which is interger and default value for interger is 0. 
                 MembershipTypes = membershipTypes //MembershipTypes ViewModel = membeshipTypes collections.
             };
 
