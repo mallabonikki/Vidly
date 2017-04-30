@@ -6,27 +6,25 @@
 }
 
 <h2>Movies</h2>
-
+@Html.ValidationSummary()
 @using (Html.BeginForm("Save", "Movies"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.Title)
         @Html.TextBoxFor(m => m.Movie.Title, new { @class="form-control"})
+        @Html.ValidationMessageFor(m => m.Movie.Title)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.ReleaseDate)
         @Html.TextBoxFor(m => m.Movie.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Movie.AddedDate)
-        @Html.TextBoxFor(m => m.Movie.AddedDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.ReleaseDate)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.NumberOfStock, "Number of stock")
         @Html.TextBoxFor(m => m.Movie.NumberOfStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.NumberOfStock)
     </div>
 
     <div class="form-group">
@@ -34,8 +32,15 @@
         @Html.DropDownListFor(m => m.Movie.GenreTypeId,
                               new SelectList(Model.GenreTypes, "Id", "Name"),
                               "Select Genre Type", new { @class="form-control"})
+        @Html.ValidationMessageFor(m => m.Movie.GenreTypeId)
     </div>
     @Html.HiddenFor(m => m.Movie.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }
 

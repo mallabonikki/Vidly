@@ -8,6 +8,7 @@ using Vidly.Models;
 using Vidly.ViewModels;
 using System.Data.Entity;
 
+
 namespace Vidly.Controllers
 {
     
@@ -25,23 +26,72 @@ namespace Vidly.Controllers
             _dbContext.Dispose();
         }
 
+        public ActionResult New()
+        {
+            //Create the genre-types lists for the drop-down in the MovieForm-view
+            var genreTypes = _dbContext.GenreTypes.ToList(); //Initialize genreTypes variable = list of records from  GenreTypes 
+
+            var viewModel = new MovieFormViewModel() //It's one to many relationship created from IdentityModel
+            {
+                Movie = new Movie(), //Initialize the default values for the Movie-properties
+                GenreTypes = genreTypes //Initialize GenreTypes model-properties = GenreTypes list of records
+            };
+
+            //return the view to the MovieForm-view with the object ViewModel.
+            return View("MovieForm", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Movie movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel
+                {
+                    Movie = movie,
+                    GenreTypes = _dbContext.GenreTypes.ToList()
+                };
+
+                return View("MovieForm", viewModel);
+            }
+
+            if (movie.Id == 0)
+            {
+                movie.AddedDate = DateTime.Now;
+                _dbContext.Movies.Add(movie); //Add new record in the memory
+            }
+            else
+            {
+                var movieInDb = _dbContext.Movies.Single(m => m.Id == movie.Id);
+
+                movieInDb.Title = movie.Title;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.NumberOfStock = movie.NumberOfStock;
+                movieInDb.GenreTypeId = movie.GenreTypeId;
+            }
+
+            ////A way to see the error on data entity exemption
+            //try
+            //{
+            //    _dbContext.SaveChanges();
+            //}
+            //catch (System.Data.Entity.Validation.DbEntityValidationException e)
+            //{
+            //    Console.WriteLine(e);
+            //}
+            ////---------------
+
+            _dbContext.SaveChanges(); //Save changes to the database
+
+            return RedirectToAction("Index", "Movies");
+        }
+
         public ActionResult Index()
         {
            var movies = _dbContext.Movies.Include(m => m.GenreType).ToList();
 
             return View(movies);
-        }
-
-        public ActionResult New()
-        {
-            var genreTypes = _dbContext.GenreTypes.ToList(); //Initialize genreTypes variable = list of records from  GenreTypes 
-
-            var viewModel = new MovieFormViewModel() //It's one to many relationship created from IdentityModel
-            {
-                GenreTypes = genreTypes //Initialize GenreTypes model-properties = GenreTypes list of records
-            };
-
-            return View("MovieForm", viewModel);
         }
 
         public ActionResult Edit(int id)
@@ -62,26 +112,6 @@ namespace Vidly.Controllers
             return View("MovieForm", viewModel);
         }
 
-        [HttpPost]
-        public ActionResult Save(Movie movie)
-        {
-            if (movie.Id == 0)
-                _dbContext.Movies.Add(movie); //Add new record in the memory
-            else
-            {
-                var movieInDb = _dbContext.Movies.Single(m => m.Id == movie.Id);
-
-                movieInDb.Title = movie.Title;
-                movieInDb.ReleaseDate = movie.ReleaseDate;
-                movieInDb.AddedDate = movie.AddedDate;
-                movieInDb.NumberOfStock = movie.NumberOfStock;
-                movieInDb.GenreTypeId = movie.GenreTypeId;
-                
-            }
-
-            _dbContext.SaveChanges(); //Save changes to the database
-
-            return RedirectToAction("Index", "Movies");
-        }
+        
     }
 }

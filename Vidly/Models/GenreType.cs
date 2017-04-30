@@ -7,7 +7,7 @@ namespace Vidly.Models
 {
     public class GenreType
     {
-        public short Id { get; set; }
+        public byte Id { get; set; }
         public string Name { get; set; }
     }
 }
