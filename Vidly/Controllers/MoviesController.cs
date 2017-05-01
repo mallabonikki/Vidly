@@ -47,9 +47,8 @@ namespace Vidly.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new MovieFormViewModel
+                var viewModel = new MovieFormViewModel(movie)
                 {
-                    Movie = movie,
                     GenreTypes = _dbContext.GenreTypes.ToList()
                 };
 
@@ -58,7 +57,7 @@ namespace Vidly.Controllers
 
             if (movie.Id == 0)
             {
-                movie.AddedDate = DateTime.Now;
+               movie.AddedDate = DateTime.Now;
                 _dbContext.Movies.Add(movie); //Add new record in the memory
             }
             else
@@ -103,9 +102,8 @@ namespace Vidly.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel()
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie, //Initialize Movie model-property = specific movie from the database   
                 GenreTypes = _dbContext.GenreTypes.ToList() //IEnumrable GenreType GenreTypes model properties = list of records from GenreTypes
             };
 
