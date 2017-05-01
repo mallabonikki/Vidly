@@ -7,18 +7,19 @@
 
 <h2>Movies</h2>
 
+<p>@Html.ActionLink("New Movie", 
+                    "New",
+                    "Movies", 
+                    null,
+                    new { @class="btn btn-primary" })
+</p>
+
 @if (!Model.Any())
 {
     <p>You don't have movies yet!</p>
 }
 else
 {
-    <p>@Html.ActionLink("New Movie", 
-                        "New",
-                        "Movies", 
-                        null,
-                        new { @class="btn btn-primary" })
-    </p>
     <table class="table table-bordered table-hover">
         <thead>
             <tr>

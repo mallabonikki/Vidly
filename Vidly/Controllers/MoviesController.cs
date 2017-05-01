@@ -33,7 +33,7 @@ namespace Vidly.Controllers
 
             var viewModel = new MovieFormViewModel() //It's one to many relationship created from IdentityModel
             {
-                Movie = new Movie(), //Initialize the default values for the Movie-properties
+                //Movie = new Movie(), //Initialize the default values for the Movie-properties
                 GenreTypes = genreTypes //Initialize GenreTypes model-properties = GenreTypes list of records
             };
 
