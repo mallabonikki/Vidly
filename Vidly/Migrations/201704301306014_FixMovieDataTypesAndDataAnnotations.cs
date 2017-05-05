@@ -7,9 +7,6 @@ namespace Vidly.Migrations
     {
         public override void Up()
         {
-            //Sql("ALTER TABLE Movies DROP CONSTRAINT DF__Movies__NumberOf__4BAC3F29");
-            //Sql("ALTER TABLE Movies DROP CONSTRAINT DF__Movies__GenreTyp__4CA06362");
-
             DropForeignKey("dbo.Movies", "GenreTypeId", "dbo.GenreTypes");
             DropIndex("dbo.Movies", new[] { "GenreTypeId" });
             DropPrimaryKey("dbo.GenreTypes");
