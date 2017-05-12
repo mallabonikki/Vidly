@@ -17,5 +17,7 @@ namespace Vidly.Dtos
         public byte MembershipTypeId { get; set; } //Foreign Key for MembershipType
 
         public DateTime? Birthdate { get; set; }
+
+        public MembershipTypeDto MembershipType { get; set; }
     }
 }

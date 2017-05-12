@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Vidly.Models;
 using AutoMapper;
+using System.Data.Entity;
 using Vidly.Dtos;
 
 
@@ -28,8 +29,8 @@ namespace Vidly.Controllers.Api
         // Get /api/customers
         public IHttpActionResult GetCustomers()
         {
-            // List of customers in the DB
-            var customersInDb = _context.Customers.ToList();
+            // List of customers in the DB and child model of Membership Type
+            var customersInDb = _context.Customers.Include(c => c.MembershipType).ToList();
             
             // Get all the list of customer in the database and map to Customer and CustomerDto models
             // The return type is list of Linq.Enumerable
