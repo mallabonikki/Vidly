@@ -1,6 +1,4 @@
-﻿@model IEnumerable<Vidly.Models.Customer>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -26,11 +24,11 @@
         // Form load event
         $(document).ready(function () {
             $("#customers").DataTable({ 
-                ajax: {
-                    url: "/api/customers", //Get
-                    dataSrc: "" // 
+                ajax: { // ajax property call, there are 2 objects
+                    url: "/api/customers", // Get
+                    dataSrc: ""
                 },
-                columns: [
+                columns: [ // Columns property, array of objects
                     {
                         data: "name",
                         render: function (data, type, customer) {
@@ -38,7 +36,7 @@
                         } 
                     },
                     {
-                        data: "name"
+                        data: "membershipTypeId"
                     },
                     {
                         data: "id",
