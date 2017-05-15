@@ -135,7 +135,7 @@ namespace Vidly.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account/Register - use for loading the registration form
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -143,25 +143,29 @@ namespace Vidly.Controllers
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/Register - use for posting the form
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {
+            {   
+                // If it is valid we create new user and initialize its username and email properties
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                //The result depends on the login input of the user and should be await first.
+                var result = await UserManager.CreateAsync(user, model.Password); // UserManager is part of the API that have methods for creating, getting, removing a user and so on
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    // - Responsible for operations like sign in and sign out and so on. And it will login automatially thats why I commented it out.
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    // - With this, We can send a confirmation email to the user so they can verify their email address. It's more secured.
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
