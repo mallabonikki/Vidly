@@ -64,6 +64,10 @@ namespace Vidly.Models
 
     public class RegisterViewModel
     {
+        [Required] // The default string value will be empty string 
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

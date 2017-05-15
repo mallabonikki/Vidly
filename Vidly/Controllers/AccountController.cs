@@ -151,9 +151,14 @@ namespace Vidly.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {   
+            {
                 // If it is valid we create new user and initialize its username and email properties
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    DrivingLicense = model.DrivingLicense
+                };
                 //The result depends on the login input of the user and should be await first.
                 var result = await UserManager.CreateAsync(user, model.Password); // UserManager is part of the API that have methods for creating, getting, removing a user and so on
                 if (result.Succeeded)
