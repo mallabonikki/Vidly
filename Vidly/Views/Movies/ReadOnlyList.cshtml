@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+<table id="movies" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Movies
+            </th>
+            <th>
+                Genre
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Movie Table with data and route to edit form, also with delete button in every table row
+            var movieTable = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "title"
+                    },
+                    {
+                        data: "genreType.name"
+                    }
+                ]
+            });
+        });
+    </script>
+}

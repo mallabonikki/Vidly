@@ -26,7 +26,8 @@ namespace Vidly.Controllers
             _dbContext.Dispose();
         }
 
-        public ActionResult New()
+        [Authorize(Roles =RoleName.CanManageMovies)]
+        public ViewResult New()
         {
             //Create the genre-types lists for the drop-down in the MovieForm-view
             var genreTypes = _dbContext.GenreTypes.ToList(); //Initialize genreTypes variable = list of records from  GenreTypes 
@@ -88,7 +89,10 @@ namespace Vidly.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+
+            return View("ReadOnlyList");
         }
 
         public ActionResult Edit(int id)
