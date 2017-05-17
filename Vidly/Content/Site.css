@@ -30,3 +30,20 @@ textarea {
 .input-validation-error {
     border: 2px solid red;
 }
+
+.wrapper {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 980px;
+    text-align: center;
+}
+
+h3 {
+    color: #2E4254;
+    font-family: 'Pacifico', cursive;
+    font-size: 32px;
+    line-height: 24px;
+    font-weight: 300;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

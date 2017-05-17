@@ -54,6 +54,13 @@ namespace Vidly
             //   consumerKey: "",
             //   consumerSecret: "");
 
+            //// Vidly Debug = for https://localhost:4430/
+            //app.UseFacebookAuthentication(
+            //   appId: "1910845362505897",
+            //   appSecret: "13804b9cffe5b5b48dfa708c27408c1c"
+            //);
+
+            // Vidly- Test1 = for publish to vidlyvideorentalapp.azurewebsites.net
             app.UseFacebookAuthentication(
                appId: "1910900845833682",
                appSecret: "dc1f11ce295b038b1bd2a710f510b9a6"

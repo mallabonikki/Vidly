@@ -11,6 +11,7 @@ namespace Vidly
     {
         public static void Register(HttpConfiguration config)
         {
+            // Return camelCase json object when get request through API
             var setting = config.Formatters.JsonFormatter.SerializerSettings;
             setting.ContractResolver = new CamelCasePropertyNamesContractResolver();
             setting.Formatting = Formatting.Indented;
