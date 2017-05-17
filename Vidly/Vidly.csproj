@@ -293,15 +293,21 @@
     <Compile Include="Migrations\201705150907083_AddDrivingLicenseToApplicationUser.Designer.cs">
       <DependentUpon>201705150907083_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705170643173_AddRentals.cs" />
+    <Compile Include="Migrations\201705170643173_AddRentals.Designer.cs">
+      <DependentUpon>201705170643173_AddRentals.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\GenreType.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -624,6 +630,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705150907083_AddDrivingLicenseToApplicationUser.resx">
       <DependentUpon>201705150907083_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705170643173_AddRentals.resx">
+      <DependentUpon>201705170643173_AddRentals.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
