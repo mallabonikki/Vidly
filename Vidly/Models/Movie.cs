@@ -30,5 +30,7 @@ namespace Vidly.Models
         [Required]
         public byte GenreTypeId { get; set; }
 
+        public byte NumberAvailable { get; set; }
+
     }
 }
