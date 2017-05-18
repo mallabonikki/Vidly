@@ -13,8 +13,10 @@
 
     <div class="form-group">
         <label>Movie</label>
-        <input type="text" value="" class="form-control" />
+        <input id="movie" type="text" value="" class="form-control" />
     </div>
+
+    <ul id="movies" class="list-group"></ul>
 
     <button class="btn btn-primary">Submit</button>
 </form>
@@ -22,8 +24,11 @@
 {
     <script>
         $(document).ready(function () {
-            var vm = {}; // viewModel blank object
+            var vm = { 
+                movieIds: [] // so we can push objects inside the array
+            };
 
+            //Customers Typeahead
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -42,6 +47,29 @@
                 source: customers
             }).on("typeahead:select", function (e, customer) {
                 vm.customerId = customer.id;
+            });
+            // Movies Typeahead
+            var movies = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/movies?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#movie').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                name: 'movies',
+                display: 'title',
+                source: movies
+            }).on("typeahead:select", function (e, movie) {
+                $("#movies").append("<li>" + movie.title + "</li>");
+
+                $("#movie").typeahead("val", "");
+                vm.movieIds.push(movie.id);
             });
         });
     </script>    
