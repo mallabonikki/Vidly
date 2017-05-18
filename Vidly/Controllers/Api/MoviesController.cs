@@ -23,16 +23,18 @@ namespace Vidly.Controllers.Api
         }
 
         // Get Api/Movies
-        public IHttpActionResult GetMovies()
+        public IEnumerable<MovieDto> GetMovies(string query = null)
         {
-            // Fetch all movies from the database
-            var moviesInDb = _context.Movies.Include(m => m.GenreType).ToList();
+            var moviesQuery = _context.Movies
+                .Include(m => m.GenreType)
+                .Where(m => m.NumberAvailable > 0);
 
-            // Initialize moviesDtos by using Mapper.Map() Domain to Dto
-            var moviesDto = moviesInDb.Select(Mapper.Map<Movie, MovieDto>);
+            if (!string.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(m => m.Title.Contains(query));
 
-            //return the content of moviesDto
-            return Ok(moviesDto);
+            return moviesQuery
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
         }
 
         // Get Api/Movies/id - Get request for specific movie
