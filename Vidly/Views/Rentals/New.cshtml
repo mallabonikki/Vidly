@@ -89,10 +89,10 @@
                     data: vm
                 })
                 .done(function () {
-                    console.log("save");
+                    toastr.success("Rentals successfully recorded.");
                 })
                 .fail(function () {
-                    console.log("fail");
+                    toastr.error("Something unexpected happened.");
                 });
             });
         });

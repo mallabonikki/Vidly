@@ -59,6 +59,7 @@ namespace Vidly.Controllers
             if (movie.Id == 0)
             {
                movie.AddedDate = DateTime.Now;
+               movie.NumberAvailable = movie.NumberOfStock;
                 _dbContext.Movies.Add(movie); //Add new record in the memory
             }
             else
@@ -69,6 +70,7 @@ namespace Vidly.Controllers
                 movieInDb.ReleaseDate = movie.ReleaseDate;
                 movieInDb.NumberOfStock = movie.NumberOfStock;
                 movieInDb.GenreTypeId = movie.GenreTypeId;
+                movieInDb.NumberAvailable = movie.NumberOfStock;
             }
 
             ////A way to see the error on data entity exemption
