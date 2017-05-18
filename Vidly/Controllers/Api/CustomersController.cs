@@ -27,16 +27,19 @@ namespace Vidly.Controllers.Api
         //}
 
         // Get /api/customers
-        public IHttpActionResult GetCustomers()
+        public IHttpActionResult GetCustomers(string query = null) // null means optional
         {
-            // List of customers in the DB and child model of Membership Type
-            var customersInDb = _context.Customers.Include(c => c.MembershipType).ToList();
-            
-            // Get all the list of customer in the database and map to Customer and CustomerDto models
-            // The return type is list of Linq.Enumerable
-            var customersDto = customersInDb.Select(Mapper.Map<Customer, CustomerDto>);
+            // Query Customer include child MembershipType 
+            var customersQuery = _context.Customers.Include(c => c.MembershipType);
 
-            return Ok(customersDto);
+            if (!string.IsNullOrWhiteSpace(query))
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+
+            var customerDtos = customersQuery
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
+
+            return Ok(customerDtos);
         }
 
         //Get /api/customers/1
