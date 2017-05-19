@@ -302,6 +302,14 @@
     <Compile Include="Migrations\201705170935557_AddNumberAvailablePropertyToMovieClass.Designer.cs">
       <DependentUpon>201705170935557_AddNumberAvailablePropertyToMovieClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705190337091_AddMembershipTypeNameRequiredAnnotationAndRemoveDirectives.cs" />
+    <Compile Include="Migrations\201705190337091_AddMembershipTypeNameRequiredAnnotationAndRemoveDirectives.Designer.cs">
+      <DependentUpon>201705190337091_AddMembershipTypeNameRequiredAnnotationAndRemoveDirectives.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705190341290_AddAnnotationRequiredForGenreTypeNameAndRemoveDirectives.cs" />
+    <Compile Include="Migrations\201705190341290_AddAnnotationRequiredForGenreTypeNameAndRemoveDirectives.Designer.cs">
+      <DependentUpon>201705190341290_AddAnnotationRequiredForGenreTypeNameAndRemoveDirectives.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -656,6 +664,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705170935557_AddNumberAvailablePropertyToMovieClass.resx">
       <DependentUpon>201705170935557_AddNumberAvailablePropertyToMovieClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705190337091_AddMembershipTypeNameRequiredAnnotationAndRemoveDirectives.resx">
+      <DependentUpon>201705190337091_AddMembershipTypeNameRequiredAnnotationAndRemoveDirectives.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705190341290_AddAnnotationRequiredForGenreTypeNameAndRemoveDirectives.resx">
+      <DependentUpon>201705190341290_AddAnnotationRequiredForGenreTypeNameAndRemoveDirectives.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
