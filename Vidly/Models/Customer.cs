@@ -15,8 +15,9 @@ namespace Vidly.Models
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; } //Foreign Key for MembershipType
 
-        [Display(Name =  "Date of Birth")]
+        [Display(Name =  "Date of Birth - ex: 1 Jan 2000")] 
         [Min18YearsIfAMember]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString ="{0:d MMM yyyy}")]
         public DateTime? Birthdate { get; set; }
 
     }
