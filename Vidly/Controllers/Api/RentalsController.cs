@@ -1,9 +1,13 @@
 ﻿using System;
-using System.Web.Http;
-using Vidly.Dtos;
-using Vidly.Models;
-//using System.Data.Entity;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using Vidly.Models;
+using AutoMapper;
+using System.Data.Entity;
+using Vidly.Dtos;
 
 namespace Vidly.Controllers.Api
 {
@@ -23,9 +27,16 @@ namespace Vidly.Controllers.Api
 
         public IHttpActionResult GetRentals()
         {
+            var rentalsQuery = _context.Rentals.Include(r => r.Customer).Include(r => r.Movie);
 
+            //if (!string.IsNullOrWhiteSpace(query))
+            //rentalsQuery = rentalsQuery.Where(r => r.Customer.Name.Contains(query));
 
-            return Ok();
+            var rentalsDtos = rentalsQuery
+                .ToList()
+                .Select(Mapper.Map<Rental, RentalDto>);
+
+            return Ok(rentalsDtos);
         }
 
         [HttpPost] // Input of our application

@@ -55,7 +55,7 @@ namespace Vidly.Controllers.Api
 
             return Ok(customerDto);
         }
-
+   
         //POST /api/customers 
         [HttpPost]
         public IHttpActionResult CreateCustomer(CustomerDto customerDto)

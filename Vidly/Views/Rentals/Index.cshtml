@@ -26,15 +26,15 @@
 
         $(document).ready(function () {
             $('#customers').DataTable({
-                ajax: { url: '/data/objects.txt', dataSrc: ''},
+                ajax: { url: "/api/rentals", dataSrc: ""},
                 columns: [
-                    { data: 'name' },
-                    { data: "movieId" }
+                    { data: 'customer.name' },
+                    { data: "movie.title" }
                 ],
                 order: [
-                    [1, 'asc']
+                    [0, 'asc']
                 ],
-                rowGroup: { dataSrc: 'name'}
+                rowGroup: { dataSrc: 'customer.name'}
             });
         });
     </script>
