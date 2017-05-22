@@ -98,3 +98,13 @@ table a:not(.btn), .table a:not(.btn) {
     box-shadow: none;
     border: 2px solid #FF8598;
 }
+
+.group, .group-start {
+    color: #ff0000;
+}
+
+table.dataTable tr.group td {
+    font-weight: bold;
+    background-color: #09A7E4;
+}
+

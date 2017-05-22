@@ -15,6 +15,8 @@ namespace Vidly
                         "~/Scripts/respond.js",
                         "~/Scripts/datatables/jquery.datatables.js",
                         "~/Scripts/datatables/datatables.bootstrap.js",
+                        "~/Scripts/datatables/extensions/RowGroup/js/dataTables.rowGroup.js",
+                        "~/Scripts/datatables/extensions/RowGroup/js/dataTables.rowGroup.min.js",
                         "~/Scripts/typeahead.bundle.js",
                         "~/Scripts/toastr.js"
                         ));
@@ -33,6 +35,8 @@ namespace Vidly
                       "~/Content/site.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/toastr.css",
+                      //"~/Content/DataTables/css/jquery.dataTables.min.css",
+                      "~/Content/DataTables/extensions/RowGroup/css/rowGroup.dataTables.min.css",
                       "~/Content/typeahead.css"
                       ));
         }

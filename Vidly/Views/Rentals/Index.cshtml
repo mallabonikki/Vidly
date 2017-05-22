@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Customers</th>
+            <th>Movies</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Customers</th>
+            <th>Movies</th>
+        </tr>
+    </tfoot>
+</table>
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#customers').DataTable({
+                ajax: { url: '/data/objects.txt', dataSrc: ''},
+                columns: [
+                    { data: 'name' },
+                    { data: "movieId" }
+                ],
+                order: [
+                    [1, 'asc']
+                ],
+                rowGroup: { dataSrc: 'name'}
+            });
+        });
+    </script>
+}

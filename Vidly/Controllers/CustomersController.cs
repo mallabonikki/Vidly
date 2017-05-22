@@ -69,6 +69,11 @@ namespace Vidly.Controllers
 
             return RedirectToAction("Index", "Customers");
         }
+        // Test for the datatable API
+        public ViewResult IndexDataTable()
+        {
+            return View();
+        }
 
         // GET: Customers
         public ViewResult Index()
