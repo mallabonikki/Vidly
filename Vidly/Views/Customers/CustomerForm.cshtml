@@ -12,7 +12,7 @@
     @Html.ValidationSummary(true,"Please fix the following errors")
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
-        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control", @id="name" })
         @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
 
@@ -45,5 +45,43 @@
 
 @section scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")   
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var span = $(".field-validation-error").html();
+            if (span === undefined) {
+
+                $("#name").focus();
+
+
+                $("#Customer_MembershipTypeId").keydown(function (e) {
+                    if (e.keyCode == 13) {
+                        e.preventDefault();
+                        $("#Customer_Birthdate").focus();
+                    }
+                });
+
+                $("#Customer_Birthdate").keydown(function (e) {
+                    if (e.keyCode == 13) {
+                        e.preventDefault()
+                        $("#Customer_IsSubscribedToNewsLetter").focus();
+                    }
+                });
+
+                $("#Customer_IsSubscribedToNewsLetter").keydown(function (e) {
+                    if (e.keyCode == 16) {
+                        e.preventDefault()
+
+                        if ($(this).is(":checked")) {
+                            $(this).prop("checked", false);
+                        }
+                        else {
+                            $(this).prop("checked", true);
+                        }
+
+                    }
+                });
+            }
+        });
+    </script>   
 }

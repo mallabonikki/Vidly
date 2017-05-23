@@ -8,14 +8,14 @@
 <table id="customers" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>Customers</th>
             <th>Movies</th>
+            <th>Customers</th>
         </tr>
     </thead>
     <tfoot>
         <tr>
-            <th>Customers</th>
             <th>Movies</th>
+            <th>Customers</th>
         </tr>
     </tfoot>
 </table>
@@ -28,11 +28,11 @@
             $('#customers').DataTable({
                 ajax: { url: "/api/rentals", dataSrc: ""},
                 columns: [
-                    { data: 'customer.name' },
-                    { data: "movie.title" }
+                    { data: "movie.title" },
+                    { data: 'customer.name' }
                 ],
                 order: [
-                    [0, 'asc']
+                    [1, 'asc']
                 ],
                 rowGroup: { dataSrc: 'customer.name'}
             });
