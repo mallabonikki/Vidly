@@ -7,7 +7,7 @@
 
 <h2>@Model.TitleChange</h2>
 
-@using (Html.BeginForm("Save", "Movies"))
+@using (Html.BeginForm("Save", "Movies", FormMethod.Post, new { @id = "submit-form" }))
 {
     @Html.ValidationSummary(true, "Please fix the following errors.")   
 
@@ -44,5 +44,72 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function (event) {
+            var span = $('.field-validation-error').html();
+
+            if (span === undefined) {
+                $("#Title").focus();
+
+                $("#Title").keydown(function (e) {
+                    var spanValue = $(this).next().html();
+
+                    if (e.keyCode == 13) {
+                        if (spanValue === undefined || $(this).val() !== "") {
+                            $("#ReleaseDate").focus()
+                        };
+
+                        e.preventDefault();
+                    }
+
+                });
+
+                $("#ReleaseDate").keydown(function (e) {
+                    var spanValue = $(this).next().html();
+                    var thisValue = $(this).val()
+                    var parsedThisValue = Date.parse(thisValue);
+
+                    if (e.keyCode == 13) {
+                        if (spanValue !== "")
+                        {
+                            e.preventDefault();
+                        } else if (!parsedThisValue) {
+                            e.preventDefault();
+                        } else if ( $.isNumeric(thisValue) ) {
+                            e.preventDefault()
+                        }
+                        else {
+                            $("#NumberOfStock").focus()
+                            e.preventDefault()
+                        }
+                    }
+
+                });
+
+                $("#NumberOfStock").keydown(function (e) {
+                    var spanValue = $(this).next().html();
+
+                    if (e.keyCode == 13) {
+                        if (spanValue === undefined || $(this).val() !== "") {
+                            $("#GenreTypeId").focus()
+                        } else {
+                            e.preventDefault();
+                        };
+                    }
+                });
+
+                $("#GenreTypeId").keydown(function (e) {
+                    var spanValue = $(this).next().html();
+
+                    if (e.keyCode == 13) {
+                        if (spanValue === undefined || $(this).val() != "") {
+                            $(".btn-primary").focus()
+                            e.preventDefault();
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 }
 

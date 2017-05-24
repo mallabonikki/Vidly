@@ -1,11 +1,11 @@
 ﻿@model Vidly.ViewModels.CustomerFormViewModel
 
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = Model.TitleCustomer;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Customer</h2>
+<h2>@Model.TitleCustomer</h2>
 
 @using (Html.BeginForm("Save", "Customers"))
 {
@@ -49,28 +49,45 @@
     <script>
         $(document).ready(function () {
             var span = $(".field-validation-error").html();
-            if (span === undefined) {
+            if (span === undefined) {                       
 
                 $("#name").focus();
 
+                $("#name").keydown(function (e) {
+                    var spanValue = $(this).next().html();
+
+                    if (e.keyCode == 13) {
+                        if ( spanValue === undefined || $(this).val() !== "" ) {
+                            $("#Customer_MembershipTypeId").focus()
+                        } else {
+                            e.preventDefault();
+                        };
+                    }
+                });
 
                 $("#Customer_MembershipTypeId").keydown(function (e) {
+                    var spanValue = $(this).next().html();
                     if (e.keyCode == 13) {
-                        e.preventDefault();
-                        $("#Customer_Birthdate").focus();
+                        if (spanValue === undefined || $(this).val() != "") {
+                            $("#Customer_Birthdate").focus()
+                            e.preventDefault();
+                        }
                     }
                 });
 
                 $("#Customer_Birthdate").keydown(function (e) {
+                    var spanValue = $(this).next().html();
+
                     if (e.keyCode == 13) {
-                        e.preventDefault()
-                        $("#Customer_IsSubscribedToNewsLetter").focus();
+                        if (spanValue === undefined || $("#Customer_MembershipTypeId").val() == 1 || $(this).val() != "") {
+                            $("#Customer_IsSubscribedToNewsLetter").focus()
+                        }
+                        e.preventDefault();
                     }
                 });
 
                 $("#Customer_IsSubscribedToNewsLetter").keydown(function (e) {
                     if (e.keyCode == 16) {
-                        e.preventDefault()
 
                         if ($(this).is(":checked")) {
                             $(this).prop("checked", false);
@@ -79,6 +96,11 @@
                             $(this).prop("checked", true);
                         }
 
+                    }
+
+                    if (e.keyCode == 13) {
+                        $(".btn-primary").focus();
+                        e.preventDefault()
                     }
                 });
             }
