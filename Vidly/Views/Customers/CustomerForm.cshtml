@@ -57,7 +57,7 @@
                     var spanValue = $(this).next().html();
 
                     if (e.keyCode == 13) {
-                        if ( spanValue === undefined || $(this).val() !== "" ) {
+                        if ( spanValue !== "" || $(this).val() !== "" ) {
                             $("#Customer_MembershipTypeId").focus()
                         } else {
                             e.preventDefault();
@@ -68,7 +68,7 @@
                 $("#Customer_MembershipTypeId").keydown(function (e) {
                     var spanValue = $(this).next().html();
                     if (e.keyCode == 13) {
-                        if (spanValue === undefined || $(this).val() != "") {
+                        if (spanValue !== "" || $(this).val() != "") {
                             $("#Customer_Birthdate").focus()
                             e.preventDefault();
                         }
@@ -77,12 +77,31 @@
 
                 $("#Customer_Birthdate").keydown(function (e) {
                     var spanValue = $(this).next().html();
+                    var thisValue = $(this).val()
+                    var parsedThisValue = Date.parse(thisValue);
+                    var memershipTypeValue = $("#Customer_MembershipTypeId").val();
 
                     if (e.keyCode == 13) {
-                        if (spanValue === undefined || $("#Customer_MembershipTypeId").val() == 1 || $(this).val() != "") {
+
+                        if ( memershipTypeValue == 1 && thisValue == "") {
                             $("#Customer_IsSubscribedToNewsLetter").focus()
+                            e.preventDefault()
                         }
-                        e.preventDefault();
+                        else if (spanValue !== "") {
+                            e.preventDefault();
+                        } 
+                        else if ( !parsedThisValue ) {
+                            e.preventDefault();
+                        } else if ( $.isNumeric(thisValue) ) {
+                            e.preventDefault()
+                        } else if ( memershipTypeValue === 1 && thisValue === ""  ) {
+                            $("#Customer_IsSubscribedToNewsLetter").focus()
+                            e.preventDefault()
+                        }
+                        else {
+                            $("#Customer_IsSubscribedToNewsLetter").focus()
+                            e.preventDefault()
+                        }
                     }
                 });
 
