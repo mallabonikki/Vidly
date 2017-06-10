@@ -33,8 +33,9 @@ namespace Vidly.Controllers.Api
             var customersQuery = _context.Customers.Include(c => c.MembershipType);
 
             if (!string.IsNullOrWhiteSpace(query))
-                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query)); //TypeOf Linq.IQueryable<Vidly.Models.Customer>
 
+            //TypeOf System.Collections.Generic.IEnumerable<Vidly.Dtos.CustomerDto>
             var customerDtos = customersQuery
                 .ToList()
                 .Select(Mapper.Map<Customer, CustomerDto>);
